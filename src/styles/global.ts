@@ -14,11 +14,12 @@ export const GlobalStyle = createGlobalStyle`
 
   body{
     background-color: ${({ theme }) => theme['base-background']};
-    color: ${({ theme }) => theme['base-title']};
+    color: ${({ theme }) => theme['base-text']};
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, button{
+  body, input, button, p, span{
     font: 400 1rem Nunito, sans-serif;
+    line-height: 160%;
   }
 `
