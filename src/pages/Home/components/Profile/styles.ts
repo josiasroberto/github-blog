@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const ProfileContainer = styled.div`
   margin: -5.625rem auto 0;
   padding: 2rem 2rem 2rem 2.5rem;
-  width: 54rem;
+  /* width: 54rem; */
   display: flex;
   gap: 2rem;
 
