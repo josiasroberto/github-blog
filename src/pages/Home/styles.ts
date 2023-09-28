@@ -30,6 +30,7 @@ export const SearchContainer = styled.div`
     margin-top: 0.75rem;
     width: 100%;
     padding: 0.75rem 1rem;
+    cursor: pointer;
 
     background: ${({ theme }) => theme['base-input']};
     border-radius: 6px;
