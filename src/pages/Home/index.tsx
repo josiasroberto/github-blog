@@ -1,6 +1,6 @@
 import { PostCard } from './components/PostCard'
 import { Profile } from './components/Profile'
-import { HomeContainer, SearchContainer } from './styles'
+import { HomeContainer, PostsContainer, SearchContainer } from './styles'
 
 export function Home() {
   return (
@@ -15,7 +15,15 @@ export function Home() {
         <input type="text" placeholder="Buscar conteúdo" />
       </SearchContainer>
 
-      <PostCard />
+      <PostsContainer>
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </PostsContainer>
     </HomeContainer>
   )
 }
