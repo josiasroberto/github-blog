@@ -26,6 +26,7 @@ export const LinksContainer = styled.div`
     display: flex;
     gap: 0.5rem;
     color: ${({ theme }) => theme.blue};
+    cursor: pointer;
 
     border-top: 1px solid transparent;
     border-bottom: 1px solid transparent;

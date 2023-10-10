@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const PostCardContainer = styled.div`
+export const PostCardContainer = styled(Link)`
   width: 26rem;
   height: 16.25rem;
   padding: 2rem;
@@ -19,7 +20,6 @@ export const PostCardContainer = styled.div`
     border: 2px solid ${({ theme }) => theme['base-label']};
   }
 `
-
 export const PostCardTitleContainer = styled.div`
   display: flex;
   gap: 1rem;

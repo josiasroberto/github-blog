@@ -8,12 +8,19 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 export function PostInfo() {
+  const navigate = useNavigate()
+
+  function goBack() {
+    navigate(-1)
+  }
+
   return (
     <PostInfoContainer>
       <LinksContainer>
-        <span>
+        <span onClick={goBack}>
           <FontAwesomeIcon icon={faChevronLeft} />
           <p>VOLTAR</p>
         </span>

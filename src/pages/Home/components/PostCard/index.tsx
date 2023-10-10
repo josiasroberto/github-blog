@@ -6,12 +6,9 @@ import {
 
 export function PostCard() {
   return (
-    <PostCardContainer>
+    <PostCardContainer to="/post">
       <PostCardTitleContainer>
-        <h1>
-          JavaScript data types and data
-          structureshttp://localhost:5173/http://localhost:5173/
-        </h1>
+        <h1>JavaScript data types and data structures</h1>
         <span>Há 99199 dias</span>
       </PostCardTitleContainer>
 
