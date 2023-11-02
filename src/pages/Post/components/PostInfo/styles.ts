@@ -22,7 +22,7 @@ export const LinksContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  span {
+  a {
     display: flex;
     gap: 0.5rem;
     color: ${({ theme }) => theme.blue};

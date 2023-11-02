@@ -1,6 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
+import firaCode from '@/assets/fonts/FiraCode-Regular.woff'
 
 export const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'FiraCode';
+    src: url(${firaCode}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
   *{
       margin: 0;
       padding: 0;
@@ -18,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
-  body, input, button, p, span{
+  body, input, button, p{
     font: 400 1rem Nunito, sans-serif;
     line-height: 160%;
   }
@@ -27,4 +35,6 @@ export const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  
 `

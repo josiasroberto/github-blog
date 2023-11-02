@@ -32,7 +32,7 @@ export const NameContainer = styled.div`
     align-items: flex-start;
     color: ${({ theme }) => theme.blue};
 
-    p {
+    a {
       font-size: 0.75rem;
       font-weight: 700;
 

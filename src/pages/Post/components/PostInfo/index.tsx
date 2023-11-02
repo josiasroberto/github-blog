@@ -9,44 +9,64 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { useNavigate } from 'react-router-dom'
+import { IPost } from '@/pages/Home'
+import { Spinner } from '@/components/Spinner'
+import { relativeDateFormatter } from '@/utils/formatter'
 
-export function PostInfo() {
+interface PostHeaderProps {
+  postData: IPost
+  isLoading: boolean
+}
+
+export function PostInfo({ postData, isLoading }: PostHeaderProps) {
   const navigate = useNavigate()
 
   function goBack() {
     navigate(-1)
   }
 
+  const formattedDate = relativeDateFormatter(postData?.created_at)
+
   return (
     <PostInfoContainer>
-      <LinksContainer>
-        <span onClick={goBack}>
-          <FontAwesomeIcon icon={faChevronLeft} />
-          <p>VOLTAR</p>
-        </span>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <LinksContainer>
+            <a onClick={goBack}>
+              <FontAwesomeIcon icon={faChevronLeft} />
+              <p>VOLTAR</p>
+            </a>
 
-        <span>
-          <p>VER NO GITHUB</p>
-          <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-        </span>
-      </LinksContainer>
+            <a href={postData.html_url} target="_blank" rel="noreferrer">
+              <p>VER NO GITHUB</p>
+              <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+            </a>
+          </LinksContainer>
 
-      <h1>JavaScript data types and data structures</h1>
+          <h1>{postData.title}</h1>
 
-      <InfoContainer>
-        <span>
-          <FontAwesomeIcon icon={faGithub} />
-          <p>josiasroberto</p>
-        </span>
-        <span>
-          <FontAwesomeIcon icon={faCalendarDay} />
-          <p>Há 1 dia</p>
-        </span>
-        <span>
-          <FontAwesomeIcon icon={faComment} />
-          <p>5 comentários</p>
-        </span>
-      </InfoContainer>
+          <InfoContainer>
+            <span>
+              <FontAwesomeIcon icon={faGithub} />
+              <p>{postData.user.login}</p>
+            </span>
+            <span>
+              <FontAwesomeIcon icon={faCalendarDay} />
+              <p>{formattedDate}</p>
+            </span>
+            <span>
+              <FontAwesomeIcon icon={faComment} />
+              <p>
+                {postData.comments > 1
+                  ? `${postData.comments} comentários`
+                  : `${postData.comments} comentário`}{' '}
+              </p>
+            </span>
+          </InfoContainer>
+        </>
+      )}
     </PostInfoContainer>
   )
 }

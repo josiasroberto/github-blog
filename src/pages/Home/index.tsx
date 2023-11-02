@@ -1,29 +1,65 @@
+import { useCallback, useEffect, useState } from 'react'
 import { PostCard } from './components/PostCard'
 import { Profile } from './components/Profile'
-import { HomeContainer, PostsContainer, SearchContainer } from './styles'
+import { HomeContainer, PostsContainer } from './styles'
+import { api } from '@/lib/axios'
+import { Search } from './components/Search'
+import { Spinner } from '@/components/Spinner'
+
+const username = import.meta.env.VITE_GITHUB_USERNAME
+const repoName = import.meta.env.VITE_GITHUB_REPONAME
+
+export interface IPost {
+  title: string
+  body: string
+  created_at: string
+  number: number
+  html_url: string
+  comments: number
+  user: {
+    login: string
+  }
+}
 
 export function Home() {
+  const [posts, setPosts] = useState<IPost[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  const getPosts = useCallback(
+    async (query: string = '') => {
+      try {
+        setIsLoading(true)
+        const response = await api.get(
+          `/search/issues?q=${query}%20repo:${username}/${repoName}`,
+        )
+        setPosts(response.data.items)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [posts],
+  )
+
+  useEffect(() => {
+    getPosts()
+  }, [])
+
   return (
     <HomeContainer>
       <Profile />
+      <Search postsLength={posts.length} getPosts={getPosts} />
 
-      <SearchContainer>
-        <div>
-          <p>Publicações</p>
-          <span>6 publicações</span>
-        </div>
-        <input type="text" placeholder="Buscar conteúdo" />
-      </SearchContainer>
-
-      <PostsContainer>
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-        <PostCard />
-      </PostsContainer>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <PostsContainer>
+            {posts.map((post) => (
+              <PostCard key={post.number} post={post} />
+            ))}
+          </PostsContainer>
+        </>
+      )}
     </HomeContainer>
   )
 }
